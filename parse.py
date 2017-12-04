@@ -5,9 +5,12 @@ def parse_file(filename):
         matrix = create_matrix(num_nodes)
 
         for line in f:
+            # node numbering starts w/ 1, so subtract 1 to get index in matrix
             node = int(line[0]) - 1
-            req_nodes = [int(x) - 1 for x in line[4:].split(' ')]
-            for n in req_nodes:
+            required_nodes = [int(x) - 1 for x in line[4:].split(' ')]
+
+            # set matrix[node][required_node] true to represent a dependency
+            for n in required_nodes:
                 matrix[node][n] = True
 
         return matrix
