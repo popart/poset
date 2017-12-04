@@ -8,7 +8,7 @@ class TestOrder(unittest.TestCase):
                 [True, False, False, False, True],
                 [False, False, True, False, False],
                 [True, False, False, False, False]]
-        self.assertEqual(order(test), [1, 5, 3, 2, 4])
+        self.assertEqual(order(test), [0, 4, 2, 1, 3])
 
 if __name__ == '__main__':
     unittest.main()

@@ -7,7 +7,7 @@ def main():
     filename = sys.argv[1]
     matrix = parse_file(filename)
     ordering = order(matrix)
-    print(' '.join([str(x) for x in ordering]))
+    print(' '.join([str(x + 1) for x in ordering]))
 
 if __name__ == '__main__':
     main()

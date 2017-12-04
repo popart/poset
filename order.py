@@ -1,11 +1,16 @@
+"""
+    Return an ordering of a partially ordered set,
+    where the set orderings are represented by links in an adjacency matrix
+    and the set items are represented by an index in the matrix
+"""
 def order(matrix):
     num_nodes = len(matrix)
     visited = [False] * num_nodes
     ordered_nodes = []
-    # will get the head node (node w/o dependencies) one at a time
+    # get each head node (node w/o dependencies) one at a time
     for i in range(num_nodes):
         head_node = None
-        # deterministic order if multiple head nodes (choose smallest)
+        # choose smallest (by index) node w/ no dependencies
         for j in range(num_nodes):
             if not visited[j] and not any(matrix[j]):
                 head_node = j
@@ -15,12 +20,12 @@ def order(matrix):
         if head_node is None:
             raise Exception('Cycle detected in rules')
 
-        ordered_nodes.append(head_node + 1)  # node numbering starts w/ 1, not 0
+        ordered_nodes.append(head_node)
 
-        # remove any dependency links to head node
+        # remove any dependencies to the head node
         # (so that there will be a new head node)
-        for i in range(num_nodes):
-            matrix[i][j] = False
+        for k in range(num_nodes):
+            matrix[k][j] = False
 
         visited[j] = True
 
